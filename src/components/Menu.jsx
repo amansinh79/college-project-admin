@@ -27,13 +27,6 @@ const navigation = [
     link: "/orders",
   },
   {
-    name: "Attachments",
-    icon: PhotographIcon,
-    href: "#",
-    current: false,
-    link: "/attachments",
-  },
-  {
     name: "Logout",
     icon: LogoutIcon,
     href: "#",
@@ -47,7 +40,11 @@ export default function Menu() {
   navigation.forEach((t) => {
     t.current = false;
   });
-  navigation[navigation.findIndex((t) => t.link === location)].current = true;
+
+  const index = navigation.findIndex((t) => t.link === location);
+  if (index !== -1) {
+    navigation[index].current = true;
+  }
 
   return (
     <div className="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-white overflow-y-auto h-full">

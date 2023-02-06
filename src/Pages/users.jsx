@@ -1,9 +1,11 @@
 import React from "react";
-import { useQuery } from "react-query";
-import { getAllUsers } from "../utils/api";
-import { useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
+import { blockUnblockUser, getAllUsers } from "../utils/api";
+import Toggle from "../components/Toggle";
 
 export default function users() {
+  const queryClient = useQueryClient();
+
   const {
     isLoading,
     isError,
@@ -60,9 +62,9 @@ export default function users() {
                     </th>
                     <th
                       scope="col"
-                      className="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                      className="  px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
                     >
-                      <span className="sr-only">Edit</span>
+                      isBlocked
                     </th>
                   </tr>
                 </thead>
@@ -79,7 +81,7 @@ export default function users() {
                         {user.username}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-black">
-                        {user.password.slice(0, 10) + "..."}
+                        {"*".repeat(6)}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-black">
                         {user.email}
@@ -87,13 +89,16 @@ export default function users() {
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-black">
                         {user.role}
                       </td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a
-                          href="#"
-                          className="text-white p-2 rounded-lg bg-gray-700 hover:bg-gray-900"
-                        >
-                          Edit<span className="sr-only">, {user.name}</span>
-                        </a>
+                      <td className="relative whitespace-nowrap text-center text-sm font-medium">
+                        {user.role !== "admin" && (
+                          <Toggle
+                            enabled={user.isBlocked}
+                            onChange={async (e) => {
+                              await blockUnblockUser(user.id, e);
+                              queryClient.invalidateQueries("users");
+                            }}
+                          />
+                        )}
                       </td>
                     </tr>
                   ))}

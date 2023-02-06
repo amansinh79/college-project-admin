@@ -1,6 +1,12 @@
+import { Redirect } from "@reach/router";
+import { navigate } from "@reach/router";
 import Cookies from "js-cookie";
 
 export default function Login() {
+  if (Cookies.get("auth_token")) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -11,7 +17,7 @@ export default function Login() {
             alt="Workflow"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Cloathing Store Admin Panel
+            Clothing Bazar Admin Panel
           </h2>
         </div>
 
@@ -80,7 +86,7 @@ export default function Login() {
                     });
                     if (res.status === 200) {
                       Cookies.set("auth_token", res.headers.get("auth_token"));
-                      window.location.href = "/";
+                      navigate("/");
                     } else {
                       document.getElementById("alert").style.opacity = 100;
                       setTimeout(() => {

@@ -5,11 +5,11 @@ import Products from "./Pages/products";
 import Orders from "./Pages/orders";
 import { Router } from "@reach/router";
 import { Location } from "@reach/router";
-import Attatchments from "./Pages/attatchments";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Login from "./Pages/login";
 import Logout from "./Pages/logout";
 import Layout from "./components/Layout";
+import EditProduct from "./Pages/editproduct";
 const queryClient = new QueryClient();
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
               <Users path="users" />
               <Products path="products" />
               <Orders path="orders" />
-              <Attatchments path="attachments" />
+              <EditProduct path="editproduct/:id" />
             </Layout>
             <Logout path="logout" />
             <Login path="login" />
