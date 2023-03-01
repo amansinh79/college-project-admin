@@ -9,7 +9,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Login from "./Pages/login";
 import Logout from "./Pages/logout";
 import Layout from "./components/Layout";
-import EditProduct from "./Pages/editproduct";
+import AddProduct from "./Pages/addproduct";
+import Feedback from "./Pages/feedback";
 const queryClient = new QueryClient();
 
 export default function App() {
@@ -23,7 +24,8 @@ export default function App() {
               <Users path="users" />
               <Products path="products" />
               <Orders path="orders" />
-              <EditProduct path="editproduct/:id" />
+              <AddProduct path="addproduct" />
+              <Feedback path="feedback" />
             </Layout>
             <Logout path="logout" />
             <Login path="login" />

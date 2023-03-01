@@ -4,7 +4,7 @@ import {
   HomeIcon,
   UsersIcon,
   LogoutIcon,
-  PhotographIcon,
+  ClipboardIcon,
 } from "@heroicons/react/outline";
 import { Link, useLocation } from "@reach/router";
 import classNames from "../utils/classNames";
@@ -25,6 +25,13 @@ const navigation = [
     href: "#",
     current: false,
     link: "/orders",
+  },
+  {
+    name: "Feedback",
+    icon: ClipboardIcon,
+    href: "#",
+    current: false,
+    link: "/feedback",
   },
   {
     name: "Logout",
