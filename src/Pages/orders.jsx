@@ -152,7 +152,9 @@ export default function Products() {
                       >
                         <div className="flex items-center">
                           <img
-                            src={product.thumbnail}
+                            src={
+                              import.meta.env.VITE_SERVER + product.thumbnail
+                            }
                             alt={product.name}
                             className="w-10 h-10 rounded-md"
                           />

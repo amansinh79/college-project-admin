@@ -90,7 +90,7 @@ export default function Products() {
                       <td className="py-4 pl-4 pr-3 sm:pl-6">
                         <img
                           className="h-10 w-10 rounded-full"
-                          src={product.thumbnail}
+                          src={import.meta.env.VITE_SERVER + product.thumbnail}
                           alt=""
                         />
                       </td>
